@@ -8,12 +8,16 @@ class CK_rec(CK_rec):
         print("RECORDING")
         self.__mid.tracks.append(self.__track)
 
-os.chdir("/home/pi/midi")
 
-PIANO_PORT = 1
+FILEPATH = None
+FILENAME = r'%Y-%m-%d_%H-%M-%S'
+PIANO_PORT = 0
 ON_ID = 144
 
 FILE_DURATION = 20#seconds
+
+if FILEPATH:
+    os.chdir(FILEPATH)
 
 code_k = Setup()
 try:
@@ -25,8 +29,8 @@ try:
 
         for i in range(FILE_DURATION*100):
             time.sleep(0.01)
-        midiRec.saveTrack(time.strftime('%Y-%m-%d_%H:%M:%S'))
+        midiRec.saveTrack(time.strftime(FILENAME))
         code_k.end()
 except KeyboardInterrupt:
-    midiRec.saveTrack(time.strftime('%Y-%m-%d_%H:%M:%S'))
+    midiRec.saveTrack(time.strftime(FILENAME))
     code_k.end()
