@@ -23,7 +23,7 @@ code_k = Setup()
 try:
     while True:
         code_k.open_port(PIANO_PORT)
-        midiRec = CK_rec(PIANO_PORT, ON_ID)
+        midiRec = CK_rec(PIANO_PORT, ON_ID, debug=False)
 
         code_k.set_callback(midiRec)
 
