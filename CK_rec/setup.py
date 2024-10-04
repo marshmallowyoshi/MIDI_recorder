@@ -106,7 +106,6 @@ class Setup(object):
     def end(self):
         print("Bye bye from CodeKlavier Recorder! see you next time 🎹\n")
         self.close_port()
-        del self.__midiin
 
 def main():
     codeK = Setup()
