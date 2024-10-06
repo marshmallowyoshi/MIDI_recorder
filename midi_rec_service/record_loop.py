@@ -38,8 +38,7 @@ def rec(path: str,
 
             code_k.set_callback(midi_rec)
 
-            for _ in range(duration*100):
-                time.sleep(0.01)
+            time.sleep(duration)
             midi_rec.saveTrack(time.strftime(FILENAME))
             code_k.end()
             del code_k, midi_rec
