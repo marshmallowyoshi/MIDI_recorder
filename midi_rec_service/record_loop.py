@@ -31,19 +31,20 @@ def rec(path: str,
             try:
                 code_k.open_port(port)
             except IndexError:
-                print("MIDI Device not connected")
-                break
-            midiRec = CK_rec(port, on_id, debug=False)
+                print("MIDI Device not connected, trying again in 10 seconds...")
+                time.sleep(10)
+                continue
+            midi_rec = CK_rec(port, on_id, debug=False)
 
-            code_k.set_callback(midiRec)
+            code_k.set_callback(midi_rec)
 
-            for i in range(duration*100):
+            for _ in range(duration*100):
                 time.sleep(0.01)
-            midiRec.saveTrack(time.strftime(FILENAME))
+            midi_rec.saveTrack(time.strftime(FILENAME))
             code_k.end()
-            del code_k, midiRec
+            del code_k, midi_rec
     except KeyboardInterrupt:
-        midiRec.saveTrack(time.strftime(FILENAME))
+        midi_rec.saveTrack(time.strftime(FILENAME))
         code_k.end()
 
 if __name__ == "__main__":
