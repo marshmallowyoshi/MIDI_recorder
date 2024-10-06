@@ -7,8 +7,8 @@ import inspect
 currentdir = os.path.dirname(os.path.abspath(inspect.getfile(inspect.currentframe())))
 parentdir = os.path.dirname(currentdir)
 sys.path.insert(0,parentdir)
-from CK_rec.setup import Setup
-from CK_rec.rec_classes import CK_rec
+from midi_rec_service.CK_rec.setup import Setup
+from midi_rec_service.CK_rec.rec_classes import CK_rec
 
 
 # Start the Device
@@ -19,7 +19,7 @@ on_id = codeK.get_device_id()
 print('your note on id is: ', on_id)
 
 # record
-midiRec = CK_rec(myPort, on_id, debug=False)
+midiRec = CK_rec(myPort, on_id, debug=True)
 codeK.set_callback(midiRec)
 
 

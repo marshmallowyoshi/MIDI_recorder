@@ -42,6 +42,8 @@ class CK_rec(object):
             if message[0] == self.on_id:
                 self.__track.append(Message('note_on', note=message[1], velocity=message[2], time=miditime))
                 self.__activesense = 0
+            elif message[0] == 128:
+                self.__track.append(Message('note_off', note=message[1], velocity=message[2], time=miditime))
             elif message[0] == 176:
                 self.__track.append(Message('control_change', channel=1, control=message[1], value=message[2], time=miditime))
             else:
